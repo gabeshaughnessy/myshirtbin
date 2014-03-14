@@ -164,28 +164,28 @@ fclose($webhook);
 		$total_tax = $webhookContent['total_tax'];
 	}
 	else{
-		$total_tax = '';
+		$total_tax = '0.00';
 	}
 	//shipping cost
 	if(isset($webhookContent['shipping_lines']['price'])){
 		$shipping_cost = $webhookContent['shipping_lines']['price'];
 	}
 	else{
-		$shipping_cost = '';
+		$shipping_cost = '0.00';
 	}
 	//subtotal price
 	if(isset($webhookContent['subtotal_price'])){
 		$subtotal_price = $webhookContent['subtotal_price'];
 	}
 	else{
-		$subtotal_price = '';
+		$subtotal_price = '0.00';
 	}
 	//total price
 	if(isset($webhookContent['total_price'])){
 		$total_price = $webhookContent['total_price'];
 	}
 	else{
-		$total_price = '';
+		$total_price = '0.00';
 	}
 
 //set up email variables.
@@ -211,13 +211,13 @@ $message .= '
 //logo and details
 $message .= '
 	<td>
-		<img src="'.$server_location.'includes/logo.png" alt="MyShirtBin.com"  width="300px" height ="52px" />
+		<img src="'.$server_location.'includes/logo.png" alt="MyShirtBin.com"  width="100%" style="max-width:300px; max-height:52px;" />
 		<p>Invoice/Order #'.$order_number.' <strong>|</strong> Date: '.$created_at.'</p>
 	</td> ';
 
 //barcode
 $message .= '	<td>
-		<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="300px" height ="75px" />
+		<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="100%" />
 	</td>';
 
 //sold to
@@ -266,10 +266,10 @@ $message .= '<table width="100%"><tbody>
 $message .='<td width="70%">'.$cart_note.'</td>
 <td width="30%">
 	<p>
-		<span style="text-align: left; width:50%; display:block; float: left;">Subtotal</span><span style="text-align: right; width:50%">'.$subtotal_price.'</span>
-		<span style="text-align: left; width:50%; display: block; float: right;">Taxes</span><span style="text-align: right; width:50%">'.$total_tax.'</span>
-		<span style="text-align: left; width:50%; display:block; float: left;">Shipping</span><span style="text-align: right; width:50%">'.$shipping_cost.'</span>
-		<span style="text-align: left; width:50%; display: block; float: right;"><strong>Total</strong></span><span style="text-align: right; width:50%">'.$total_price.'</span>
+		<span style="text-align: left; width:50%; display:block; float: left;">Subtotal</span><span style="text-align: right; width:50%; display: block; float: right;">'.$subtotal_price.'</span>
+		<span style="text-align: left; width:50%; display: block; float: left;">Taxes</span><span style="text-align: right; width:50%; display: block; float: right;">'.$total_tax.'</span>
+		<span style="text-align: left; width:50%; display:block; float: left;">Shipping</span><span style="text-align: right; width:50%; display: block; float: right;">'.$shipping_cost.'</span>
+		<span style="text-align: left; width:50%; display: block; float: left;"><strong>Total</strong></span><span style="text-align: right; width:50%; display: block; float: right;">'.$total_price.'</span>
 	</p>
 </td>';
 $message .='</tr></tbody></table>';
