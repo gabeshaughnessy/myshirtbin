@@ -29,7 +29,7 @@ $message = '
   <title>Title</title>
 </head>
 <body>
-  <p>'.$order_number.'</p>
+  <p>'.print_r($webhookContent, true).'</p>
   <table>
     <tr>
       <th>Barcode</th>
