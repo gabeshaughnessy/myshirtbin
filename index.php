@@ -149,7 +149,46 @@ fclose($webhook);
 	else{
 		$line_items = 'no line items';
 	}
-//set up email varialbles.
+
+//cart note
+	if(isset($webhookContent['note'])){
+		$cart_note = $webhookContent['note'];
+	}
+	else{
+		$cart_note = '';
+	}
+
+//cart totals 
+	//taxes
+	if(isset($webhookContent['total_tax'])){
+		$total_tax = $webhookContent['total_tax'];
+	}
+	else{
+		$total_tax = '';
+	}
+	//shipping cost
+	if(isset($webhookContent['shipping_lines']['price'])){
+		$shipping_cost = $webhookContent['shipping_lines']['price'];
+	}
+	else{
+		$shipping_cost = '';
+	}
+	//subtotal price
+	if(isset($webhookContent['subtotal_price'])){
+		$subtotal_price = $webhookContent['subtotal_price'];
+	}
+	else{
+		$subtotal_price = '';
+	}
+	//total price
+	if(isset($webhookContent['total_price'])){
+		$total_price = $webhookContent['total_price'];
+	}
+	else{
+		$total_price = '';
+	}
+
+//set up email variables.
 
 $to  = 'gabeshaughnessy@gmail.com'; // note the comma
 // subject
@@ -214,15 +253,28 @@ if(is_array($line_items) && count($line_items) > 0){
 	foreach ($line_items as $line_item) {
 		$message .=
 		'<tr >
-			<td width="60%" style ="border-bottom: 1px solid #ccc;">'.$line_item['title'].' | '.$line_item['variant_title'].'</td>
-			<td width="10%" style ="border-bottom: 1px solid #ccc;">'.$line_item['quantity'].'</td>
-			<td width="10%" style ="border-bottom: 1px solid #ccc;">$'.$line_item['price'].'</td>
+			<td width="60%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">'.$line_item['title'].' | '.$line_item['variant_title'].'</td>
+			<td width="10%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">'.$line_item['quantity'].'</td>
+			<td width="10%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">$'.$line_item['price'].'</td>
 			<td width="10%" style ="border-bottom: 1px solid #ccc;">$'.$line_item['price']*$line_item['quantity'].'</td>
 		</tr>';
 	}	
 }
 $message .= '</tbody></table>';
+$message .= '<table width="100%"><tbody>
+	<tr>';
+$message .='<td width="60%">'.$cart_note.'</td>
+<td width="40%">
+	<p>
+		<span style="text-align: left; width:50%">Subtotal</span><span style="text-align: right; width:50%">'.$subtotal_price.'</span>
+		<span style="text-align: left; width:50%">Taxes</span><span style="text-align: right; width:50%">'.$total_tax.'</span>
+		<span style="text-align: left; width:50%">Shipping</span><span style="text-align: right; width:50%">'.$shipping_cost.'</span>
+		<span style="text-align: left; width:50%"><strong>Total</strong></span><span style="text-align: right; width:50%">'.$total_price.'</span>
+	</p>
+</td>';
+$message .='</tr></tbody></table>';
 $message .= '
+<p style="text-align:center; width:100%:"><strong>Thanks for shopping at <a href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>
 </body>
 </html>';
 
