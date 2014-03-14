@@ -253,7 +253,7 @@ if(is_array($line_items) && count($line_items) > 0){
 	foreach ($line_items as $line_item) {
 		$message .=
 		'<tr >
-			<td width="60%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">'.$line_item['title'].' | '.$line_item['variant_title'].'</td>
+			<td width="60%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">'.$line_item['title'].($line_item['variant_title'] != '' ? ' | '.$line_item['variant_title'] : '').'</td>
 			<td width="10%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">'.$line_item['quantity'].'</td>
 			<td width="10%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;">$'.$line_item['price'].'</td>
 			<td width="10%" style ="border-bottom: 1px solid #ccc;">$'.$line_item['price']*$line_item['quantity'].'</td>
