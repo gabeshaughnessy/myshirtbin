@@ -8,7 +8,7 @@ $webhookContent = "";
 $webhook = fopen('php://input' , 'rb');
 while (!feof($webhook)) {
     $webhookContent .= fread($webhook, 4096);
-     $webhookContent = json_decode($webhookContent);
+     $webhookContent = json_decode($webhookContent, true);
 }
 fclose($webhook);
 
