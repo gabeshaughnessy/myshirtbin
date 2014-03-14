@@ -190,7 +190,7 @@ fclose($webhook);
 
 //set up email variables.
 
-$to  = 'gabeshaughnessy@gmail.com'; // note the comma
+$to  = 'fulfill@myshirtbin.com'; // note the comma
 // subject
 $subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
 
@@ -284,7 +284,6 @@ $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
-$headers .= 'To: fulfill@myshirtbin.com' . "\r\n"; //another way to add a too address here.
 $headers .= 'From: orders@myshirtbin.com' . "\r\n";
 
 // Mail it
