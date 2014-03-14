@@ -2,12 +2,18 @@
 <?php
 // multiple recipients
 $to  = 'gabeshaughnessy@gmail.com' . ', '; // note the comma
-if(isset($_POST['order_number'])){
-	$order_number = $_POST['order_number'];
+
+$webhookContent = "";
+
+$webhook = fopen('php://input' , 'rb');
+while (!feof($webhook)) {
+    $webhookContent .= fread($webhook, 4096);
 }
-else {
-	$order_number = 'nnn';
-}
+fclose($webhook);
+
+error_log($webhookContent);
+
+$order_number = 'nnn';
 // subject
 $subject = 'Email from shopify webhook '.$order_number;
 
