@@ -5,7 +5,7 @@ $to  = 'gabeshaughnessy@gmail.com' . ', '; // note the comma
 
 // subject
 $subject = 'Another Testing Email from shopify webhook';
-$server_location = 'http://gabesimagination.com/myshirtbin-app/'
+$server_location = 'http://gabesimagination.com/myshirtbin-app/';
 // message
 $message = '
 <html>
