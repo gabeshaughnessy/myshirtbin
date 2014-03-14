@@ -165,7 +165,8 @@ $message .='
 </head>
 <body>';
 $message .= '
-<table>
+<table width="100%">
+<tbody>
 	<tr>';
 
 //logo and details
@@ -184,7 +185,7 @@ $message .= '	<td>
 $message .= 
 	'</tr>
 	<tr>
-		<td>
+		<td width="50%">
 			<p><strong>SOLD TO:</strong><br />'.
 			$billing_name.'<br />'.
 			$billing_address_1.', '.$billing_address_2.'<br />'.
@@ -194,7 +195,7 @@ $message .=
 		</td>';
 //shipped to
 $message .= 
-		'<td>
+		'<td width="50%">
 			<p><strong>SHIP TO:</strong><br />'.
 				$shipping_name.'<br />'.
 				$shipping_address_1.', '.$shipping_address_2.'<br />'.
@@ -203,31 +204,27 @@ $message .=
 			.'</p>
 		</td>';
 $message .= '
-	</tr>
-	<tr>
-	<table border=1 >
+	</tr></tbody></table>';
+$message .= '	<table width="100%" style ="border: 1px solid #ccc;"><thead style="background-color: #aaa;">
 	<tr>';
-$message .='<th>Description</th><th>Qty</th><th>Price</th><th>Total</th></tr>';
+$message .='<th >Description</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead><tbody>';
 
 //Line Items
 if(is_array($line_items) && count($line_items) > 0){
 	foreach ($line_items as $line_item) {
 		$message .=
-		'<tr>
-			<td>'.$line_item['title'].' | '.$line_item['variant_title'].'</td>
-			<td>'.$line_item['quantity'].'</td>
-			<td>$'.$line_item['price'].'</td>
-			<td>$'.$line_item['price']*$line_item['quantity'].'</td>
+		'<tr >
+			<td width="60%" style ="border-bottom: 1px solid #ccc;">'.$line_item['title'].' | '.$line_item['variant_title'].'</td>
+			<td width="10%" style ="border-bottom: 1px solid #ccc;">'.$line_item['quantity'].'</td>
+			<td width="10%" style ="border-bottom: 1px solid #ccc;">$'.$line_item['price'].'</td>
+			<td width="10%" style ="border-bottom: 1px solid #ccc;">$'.$line_item['price']*$line_item['quantity'].'</td>
 		</tr>';
 	}	
 }
-$message .= '</table>
-	</tr>
-</table>';
+$message .= '</tbody></table>';
 $message .= '
 </body>
-</html>
-	';
+</html>';
 
 // To send HTML mail, the Content-type header must be set
 $headers  = 'MIME-Version: 1.0' . "\r\n";
