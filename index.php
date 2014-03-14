@@ -2,11 +2,10 @@
 <?php
 // multiple recipients
 $to  = 'gabeshaughnessy@gmail.com' . ', '; // note the comma
-$to .= 'gabe@myshirtbin.com';
 
 // subject
-$subject = 'Testing Email from shopify webhook';
-
+$subject = 'Another Testing Email from shopify webhook';
+$server_location = 'http://gabesimagination.com/myshirtbin-app/'
 // message
 $message = '
 <html>
@@ -20,7 +19,7 @@ $message = '
       <th>Barcode</th>
     </tr>
     <tr>
-      <td><img src="includes/barcode.php?text=testing" alt="testing" /></td>
+      <td><img src="'.$server_location.'includes/barcode.php?text=testing" alt="testing" /></td>
     </tr>
   </table>
 </body>
@@ -32,7 +31,7 @@ $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
-$headers .= 'To: fulfill@myshirtbin.com' . "\r\n";
+$headers .= 'To: fulfill@myshirtbin.com' . "\r\n"; //another way to add a too address here.
 $headers .= 'From: gabe@myshirtbin.com' . "\r\n";
 
 // Mail it
