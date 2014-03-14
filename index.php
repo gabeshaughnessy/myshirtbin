@@ -11,9 +11,13 @@ while (!feof($webhook)) {
 }
 fclose($webhook);
 
-error_log($webhookContent);
 
-$order_number = 'nnn';
+if(isset($webhookContent['order_number'])){
+	$order_number = $webhookContent['order_number'];
+}
+else {
+	$order_number = 'no order number';
+}
 // subject
 $subject = 'Email from shopify webhook '.$order_number;
 
@@ -31,7 +35,7 @@ $message = '
       <th>Barcode</th>
     </tr>
     <tr>
-      <td><img src="'.$server_location.'includes/barcode.php?text=testing" alt="testing"  width="300px" height ="75px" /></td>
+      <td><img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="'.$order_number.'"  width="300px" height ="75px" /></td>
     </tr>
   </table>
 </body>
