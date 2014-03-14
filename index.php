@@ -274,7 +274,7 @@ $message .='<td width="70%">'.$cart_note.'</td>
 </td>';
 $message .='</tr></tbody></table>';
 $message .= '
-<p style="text-align:center; width:100%:"><strong>Thanks for shopping at <a style="text-decoration: none;" href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>
+<p style="text-align:center; width:100%;"><strong>Thanks for shopping at <a style="text-decoration: none;" href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>
 </body>
 </html>';
 
