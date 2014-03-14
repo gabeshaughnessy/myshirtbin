@@ -263,18 +263,18 @@ if(is_array($line_items) && count($line_items) > 0){
 $message .= '</tbody></table>';
 $message .= '<table width="100%"><tbody>
 	<tr>';
-$message .='<td width="60%">'.$cart_note.'</td>
-<td width="40%">
+$message .='<td width="70%">'.$cart_note.'</td>
+<td width="30%">
 	<p>
-		<span style="text-align: left; width:50%">Subtotal</span><span style="text-align: right; width:50%">'.$subtotal_price.'</span>
-		<span style="text-align: left; width:50%">Taxes</span><span style="text-align: right; width:50%">'.$total_tax.'</span>
-		<span style="text-align: left; width:50%">Shipping</span><span style="text-align: right; width:50%">'.$shipping_cost.'</span>
-		<span style="text-align: left; width:50%"><strong>Total</strong></span><span style="text-align: right; width:50%">'.$total_price.'</span>
+		<span style="text-align: left; width:50%; display:block; float: left;">Subtotal</span><span style="text-align: right; width:50%">'.$subtotal_price.'</span>
+		<span style="text-align: left; width:50%; display: block; float: right;">Taxes</span><span style="text-align: right; width:50%">'.$total_tax.'</span>
+		<span style="text-align: left; width:50%; display:block; float: left;">Shipping</span><span style="text-align: right; width:50%">'.$shipping_cost.'</span>
+		<span style="text-align: left; width:50%; display: block; float: right;"><strong>Total</strong></span><span style="text-align: right; width:50%">'.$total_price.'</span>
 	</p>
 </td>';
 $message .='</tr></tbody></table>';
 $message .= '
-<p style="text-align:center; width:100%:"><strong>Thanks for shopping at <a href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>
+<p style="text-align:center; width:100%:"><strong>Thanks for shopping at <a style="text-decoration: none;" href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>
 </body>
 </html>';
 
