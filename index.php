@@ -192,7 +192,7 @@ fclose($webhook);
 
 $to  = 'gabeshaughnessy@gmail.com'; // note the comma
 // subject
-$subject = 'Email from shopify webhook '.$order_number;
+$subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
 
 
 // message
@@ -200,7 +200,7 @@ $message = '';
 $message .='
 <html>
 <head>
-  <title>Title</title>
+  <title>'.$subject.'</title>
 </head>
 <body>';
 $message .= '
@@ -284,7 +284,7 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
 $headers .= 'To: fulfill@myshirtbin.com' . "\r\n"; //another way to add a too address here.
-$headers .= 'From: gabe@myshirtbin.com' . "\r\n";
+$headers .= 'From: orders@myshirtbin.com' . "\r\n";
 
 // Mail it
 mail($to, $subject, $message, $headers);
