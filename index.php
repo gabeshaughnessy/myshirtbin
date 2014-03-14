@@ -2,9 +2,15 @@
 <?php
 // multiple recipients
 $to  = 'gabeshaughnessy@gmail.com' . ', '; // note the comma
-
+if(isset($_POST['order_number'])){
+	$order_number = $_POST['order_number'];
+}
+else {
+	$order_number = 'nnn';
+}
 // subject
-$subject = 'Another Testing Email from shopify webhook';
+$subject = 'Email from shopify webhook '.$order_number;
+
 $server_location = 'http://gabesimagination.com/myshirtbin-app/';
 // message
 $message = '
@@ -13,7 +19,7 @@ $message = '
   <title>Title</title>
 </head>
 <body>
-  <p>'.print_r($_POST, true).'</p>
+  <p>'.$order_number.'</p>
   <table>
     <tr>
       <th>Barcode</th>
