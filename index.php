@@ -76,9 +76,79 @@ fclose($webhook);
 	else{
 		$billing_country = 'no billing country';
 	}
+	//phone
+	if(isset($webhookContent['billing_address']['phone'])){
+		$billing_phone = $webhookContent['billing_address']['phone'];
+	}
+	else{
+		$billing_phone = 'no shipping phone';
+	}
+//Shipping Details
+	//name
+	if(isset($webhookContent['shipping_address']['name'])){
+		$shipping_name = $webhookContent['shipping_address']['name'];
+	}
+	else{
+		$shipping_name = 'no shipping name';
+	}
+	//address 1
+	if(isset($webhookContent['shipping_address']['address1'])){
+		$shipping_address_1 = $webhookContent['shipping_address']['address1'];
+	}
+	else{
+		$shipping_address_1 = 'no shipping address';
+	}
+	//address 2
+	if(isset($webhookContent['shipping_address']['address2'])){
+		$shipping_address_2 = $webhookContent['shipping_address']['address2'];
+	}
+	else{
+		$shipping_address_2 = '';
+	}
+	//city
+	if(isset($webhookContent['shipping_address']['city'])){
+		$shipping_city = $webhookContent['shipping_address']['city'];
+	}
+	else{
+		$shipping_city = 'no shipping city';
+	}
+	//province
+	if(isset($webhookContent['shipping_address']['province'])){
+		$shipping_province = $webhookContent['shipping_address']['province'];
+	}
+	else{
+		$shipping_province = 'no shipping province';
+	}
+	//zip
+	if(isset($webhookContent['shipping_address']['zip'])){
+		$shipping_zip = $webhookContent['shipping_address']['zip'];
+	}
+	else{
+		$shipping_zip = 'no shipping address';
+	}
+	//country
+	if(isset($webhookContent['shipping_address']['country'])){
+		$shipping_country = $webhookContent['shipping_address']['country'];
+	}
+	else{
+		$shipping_country = 'no shipping country';
+	}
+	//phone
+	if(isset($webhookContent['shipping_address']['phone'])){
+		$shipping_phone = $webhookContent['shipping_address']['phone'];
+	}
+	else{
+		$shipping_phone = 'no shipping phone';
+	}
+// END SHIPPING
 
-
-
+//LINE ITEMS 
+	if(isset($webhookContent['line_items'])){
+		$line_items = $webhookContent['line_items'];
+	}
+	else{
+		$line_items = 'no line items';
+	}
 //set up email varialbles.
 
 $to  = 'gabeshaughnessy@gmail.com'; // note the comma
@@ -101,37 +171,60 @@ $message .= '
 //logo and details
 $message .= '
 	<td>
-		<img src="'.$server_location.'includes/logo.png" alt="My Shirt Bin Logo"  width="500px" height ="86px" />
+		<img src="'.$server_location.'includes/logo.png" alt="MyShirtBin.com"  width="300px" height ="52px" />
 		<p>Invoice/Order #'.$order_number.' <strong>|</strong> Date: '.$created_at.'</p>
 	</td> ';
 
 //barcode
 $message .= '	<td>
-		<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="'.$order_number.'"  width="300px" height ="75px" />
+		<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="300px" height ="75px" />
 	</td>';
 
 //sold to
 $message .= 
 	'</tr>
-	<tr><td>
-		<p><strong>SOLD TO:</strong><br />'.
-		$billing_name.'<br />'.
-		$billing_address_1.', '.$billing_address_2.'<br />'.
-		$billing_city.', '.$billing_province.', '.$billing_zip.', '.$billing_country		
-	.'</td>';
-
+	<tr>
+		<td>
+			<p><strong>SOLD TO:</strong><br />'.
+			$billing_name.'<br />'.
+			$billing_address_1.', '.$billing_address_2.'<br />'.
+			$billing_city.', '.$billing_province.', '.$billing_zip.', '.$billing_country.'<br />'.
+			$billing_phone
+			.'</p>
+		</td>';
 //shipped to
-$message .= '	<td>
-	<p><strong>SHIP TO:</strong><br />	
-</td>';
+$message .= 
+		'<td>
+			<p><strong>SHIP TO:</strong><br />'.
+				$shipping_name.'<br />'.
+				$shipping_address_1.', '.$shipping_address_2.'<br />'.
+				$shipping_city.', '.$shipping_province.', '.$shipping_zip.', '.$shipping_country.'<br />'.
+				$shipping_phone
+			.'</p>
+		</td>';
 $message .= '
+	</tr>
+	<tr>
+	<table border=1 >
+	<tr>';
+$message .='<th>Description</th><th>Qty</th><th>Price</th><th>Total</th></tr>';
+
+//Line Items
+if(is_array($line_items) && count($line_items) > 0){
+	foreach ($line_items as $line_item) {
+		$message .=
+		'<tr>
+			<td>'.$line_item['title'].' | '.$line_item['variant_title'].'</td>
+			<td>'.$line_item['quantity'].'</td>
+			<td>$'.$line_item['price'].'</td>
+			<td>$'.$line_item['price']*$line_item['quantity'].'</td>
+		</tr>';
+	}	
+}
+$message .= '</table>
 	</tr>
 </table>';
 $message .= '
-<table>
-
-</table>
-<p>'.print_r($webhookContent, true).'</p>
 </body>
 </html>
 	';
