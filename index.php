@@ -13,13 +13,13 @@ $message = '
   <title>Title</title>
 </head>
 <body>
-  <p>first paragraph!</p>
+  <p>'.print_r($_POST, true).'</p>
   <table>
     <tr>
       <th>Barcode</th>
     </tr>
     <tr>
-      <td><img src="'.$server_location.'includes/barcode.php?text=testing" alt="testing" /></td>
+      <td><img src="'.$server_location.'includes/barcode.php?text=testing" alt="testing"  width="300px" height ="75px" /></td>
     </tr>
   </table>
 </body>
