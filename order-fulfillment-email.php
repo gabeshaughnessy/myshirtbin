@@ -12,8 +12,10 @@ while (!feof($webhook)) {
     $webhookContent = json_decode($webhookContent, true);
 }
 fclose($webhook);
+
 if(isset($_POST['json'])){
 	$post_data = json_decode($_POST['json'], true);
+	error_log('post_data '.$post_data);
 }
 //order number
 	if(isset($webhookContent['order_number'])){
@@ -24,7 +26,7 @@ if(isset($_POST['json'])){
 	}
 //created at
 	if(isset($webhookContent['created_at'])){
-		$created_at = date('d/m/Y', $webhookContent['created_at']);
+		$created_at = '' //date('d/m/Y', $webhookContent['created_at']);
 	}
 	else {
 		$created_at = 'no created at date';
