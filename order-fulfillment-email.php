@@ -1,6 +1,6 @@
 
 <?php
-error_log(http_get_request_body());
+error_log(file_get_contents('php://input'));
 //where does this application live?
 $server_location = 'http://gabesimagination.com/myshirtbin-app/';
 /* get webhook data from Shopify and assign it to variables */
