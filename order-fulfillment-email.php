@@ -1,9 +1,9 @@
 
 <?php
-error_log(file_get_contents('php://input'));
+$webhookContent = json_decode(file_get_contents('php://input'), true);
 //where does this application live?
 $server_location = 'http://gabesimagination.com/myshirtbin-app/';
-/* get webhook data from Shopify and assign it to variables */
+/* get webhook data from Shopify and assign it to variables 
 $webhookContent = "";
 
 $webhook = fopen('php://input' , 'rb');
@@ -11,12 +11,9 @@ while (!feof($webhook)) {
     $webhookContent .= fread($webhook, 4096);
     $webhookContent = json_decode($webhookContent, true);
 }
-fclose($webhook);
+fclose($webhook);*/
 
-if(isset($_POST['json'])){
-	$post_data = json_decode($_POST['json'], true);
-	error_log('post_data '.$post_data);
-}
+
 //order number
 	if(isset($webhookContent['order_number'])){
 		$order_number = $webhookContent['order_number'];
@@ -201,8 +198,8 @@ $subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
 $barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="100%" />';
 
 // message
-	
-$message .= '<p> Debug Content (POST): '.print_r($_POST, true).'</p>';
+$message = '';
+$message .= '<p> Debug Content: '.print_r($webhookContent, true).'</p>';
 $message .='
 <html>
 <head>
