@@ -11,7 +11,6 @@ while (!feof($webhook)) {
     $webhookContent = json_decode($webhookContent, true);
 }
 fclose($webhook);
-
 //order number
 	if(isset($webhookContent['order_number'])){
 		$order_number = $webhookContent['order_number'];
@@ -193,10 +192,11 @@ fclose($webhook);
 $to  = 'fulfill@myshirtbin.com'; // note the comma
 // subject
 $subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
-
+$barcode = 
 
 // message
-$message = '<p> Debug Content: '.print_r($webhookContent, true).'</p>';
+$message = '<p> Debug Content (webhook): '.print_r($webhookContent, true).'</p>';
+$message = '<p> Debug Content (POST): '.$_POST.'</p>';
 $message .='
 <html>
 <head>
@@ -217,7 +217,7 @@ $message .= '
 
 //barcode
 $message .= '	<td>
-		<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="100%" />
+		'.$barcode.'
 	</td>';
 
 //sold to
