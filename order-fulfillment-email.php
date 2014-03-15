@@ -192,7 +192,7 @@ fclose($webhook);
 $to  = 'fulfill@myshirtbin.com'; // note the comma
 // subject
 $subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
-$barcode = 
+$barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="100%" />';
 
 // message
 $message = '<p> Debug Content (webhook): '.print_r($webhookContent, true).'</p>';
