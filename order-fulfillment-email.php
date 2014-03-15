@@ -1,6 +1,6 @@
 
 <?php
-error_log(print_r($_REQUEST, true));
+error_log(http_get_request_body());
 //where does this application live?
 $server_location = 'http://gabesimagination.com/myshirtbin-app/';
 /* get webhook data from Shopify and assign it to variables */
@@ -201,7 +201,7 @@ $subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
 $barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="100%" />';
 
 // message
-$message = '<p> Debug Content (webhook): '.print_r($webhookContent, true).'</p>';
+	
 $message .= '<p> Debug Content (POST): '.print_r($_POST, true).'</p>';
 $message .='
 <html>
