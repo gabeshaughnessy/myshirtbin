@@ -13,7 +13,7 @@ $server_location = 'http://gabesimagination.com/myshirtbin-app/';
 	}
 //created at
 	if(isset($webhookContent['created_at'])){
-		$created_at = '' ;//date('d/m/Y', $webhookContent['created_at']);
+		$created_at = date('d/m/Y', strtotime($webhookContent['created_at']));
 	}
 	else {
 		$created_at = 'no created at date';
