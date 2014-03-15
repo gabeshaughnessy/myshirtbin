@@ -11,6 +11,9 @@ while (!feof($webhook)) {
     $webhookContent = json_decode($webhookContent, true);
 }
 fclose($webhook);
+if(isset($_POST['json'])){
+	$post_data = json_decode($_POST['json'], true);
+}
 //order number
 	if(isset($webhookContent['order_number'])){
 		$order_number = $webhookContent['order_number'];
@@ -196,7 +199,7 @@ $barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_num
 
 // message
 $message = '<p> Debug Content (webhook): '.print_r($webhookContent, true).'</p>';
-$message = '<p> Debug Content (POST): '.$_POST.'</p>';
+$message .= '<p> Debug Content (POST): '.print_r($_POST, true).'</p>';
 $message .='
 <html>
 <head>
