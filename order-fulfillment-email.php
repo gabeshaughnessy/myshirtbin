@@ -1,18 +1,8 @@
 
 <?php
+$debug = false;
 $webhookContent = json_decode(file_get_contents('php://input'), true);
-//where does this application live?
 $server_location = 'http://gabesimagination.com/myshirtbin-app/';
-/* get webhook data from Shopify and assign it to variables 
-$webhookContent = "";
-
-$webhook = fopen('php://input' , 'rb');
-while (!feof($webhook)) {
-    $webhookContent .= fread($webhook, 4096);
-    $webhookContent = json_decode($webhookContent, true);
-}
-fclose($webhook);*/
-
 
 //order number
 	if(isset($webhookContent['order_number'])){
@@ -199,7 +189,9 @@ $barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_num
 
 // message
 $message = '';
-$message .= '<p> Debug Content: '.print_r($webhookContent, true).'</p>';
+if($debug === true){
+	$message .= '<p> Debug Content: '.print_r($webhookContent, true).'</p>';
+}
 $message .='
 <html>
 <head>
