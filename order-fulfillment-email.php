@@ -3,7 +3,7 @@
 $debug = false;
 $webhookContent = json_decode(file_get_contents('php://input'), true);
 $server_location = 'http://gabesimagination.com/myshirtbin-app/';
-
+include('includes/PHPMailer/class.phpmailer.php');
 //order number
 	if(isset($webhookContent['order_number'])){
 		$order_number = $webhookContent['order_number'];
