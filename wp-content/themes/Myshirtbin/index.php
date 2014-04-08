@@ -1,8 +1,9 @@
 <?php
 get_header();
-?>
 
-foobar
-<?
+
+the_content();
+
+
 get_footer();
 ?>
