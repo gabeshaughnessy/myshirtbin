@@ -226,6 +226,7 @@ $message .= '	<td>
 //sold to
 $message .= 
 	'</tr>
+    <tr class="spacer"></tr>
 	<tr>
 		<td width="50%">
 			<p><strong>SOLD TO:</strong><br />'.
@@ -246,7 +247,7 @@ $message .=
 			.'</p>
 		</td>';
 $message .= '
-	</tr></tbody></table>';
+	</tr><tr class="spacer"></tr></tbody></table>';
 $message .= '	<table width="100%" style ="border: 1px solid #ccc;"><thead style="background-color: #aaa;">
 	<tr>';
 $message .='<th >Description</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead><tbody>';
@@ -275,7 +276,7 @@ $message .='<td width="70%">'.$cart_note.'</td>
 		<span style="text-align: left; width:50%; display: block; float: left;"><strong>Total</strong></span><span style="text-align: right; width:50%; display: block; float: right;">'.$total_price.'</span>
 	</p>
 </td>';
-$message .='</tr></tbody></table>';
+$message .='</tr><tr class="spacer"></tr></tbody></table>';
 $message .= '
 <p style="text-align:center; width:100%;"><strong>Thanks for shopping at <a style="text-decoration: none;" href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>
 </body>
