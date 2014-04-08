@@ -1,9 +1,17 @@
-
 <?php
+/**
+ * Template Name: Order Fulfillment 
+ *
+ * @package WordPress
+ * @subpackage msb
+ * @since msb 1.0
+ */
+
+get_header();
+
 $debug = false;
 $webhookContent = json_decode(file_get_contents('php://input'), true);
-$server_location = 'http://gabesimagination.com/myshirtbin-app/';
-require 'includes/PHPMailer/PHPMailerAutoload.php';
+$server_location = 'http://msb.gabesimagination.com/';
 //order number
 	if(isset($webhookContent['order_number'])){
 		$order_number = $webhookContent['order_number'];
@@ -273,53 +281,20 @@ $message .= '
 </body>
 </html>';
 
-// To send HTML mail, the Content-type header must be set
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-// Additional headers
-$headers .= 'From: orders@myshirtbin.com' . "\r\n";
+// Create post object
+if(isset($webhookContent['order_number'])){
+	$order_post = array(
+	  'post_title'    => 'Order Number '.$order_number,
+	  'post_content'  => $message,
+	  'post_status'   => 'publish',
+	  'post_author'   => 1,
+	  'post_category' => array(2)
+	);
 
-// Mail it
-//mail($to, $subject, $message, $headers);
-
-//PHP MAILER https://github.com/Synchro/PHPMailer
-if(isset($webhookContent['order_number']) || htmlspecialchars($_GET["test"] == 1)){
-	error_log(print_r($webhookContent, true);
-$mail = new PHPMailer;
-
-//$mail->isSMTP();                                      // Set mailer to use SMTP
-//$mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup server
-//$mail->SMTPAuth = true;                               // Enable SMTP authentication
-//$mail->Username = 'jswan';                            // SMTP username
-//$mail->Password = 'secret';                           // SMTP password
-//$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-
-$mail->From = 'orders@myshirtbin.com';
-$mail->FromName = 'My Shirt Bin Orders';
-$mail->addAddress('fulfill@myshirtbin.com');  // Add a recipient
-$mail->addReplyTo('orders@myshirtbin.com', 'Orders');
-//$mail->addCC('cc@example.com');
-//$mail->addBCC('bcc@example.com');
-
-$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-$mail->isHTML(true);                                  // Set email format to HTML
-
-$mail->Subject = $subject;
-$mail->Body    = $message;
-$mail->AltBody = 'Please view this email in HTML mode, it\'s going to looka  lot better. '.strip_tags($message);
-
-if(!$mail->send()) {
-   echo 'Message could not be sent.';
-   echo 'Mailer Error: ' . $mail->ErrorInfo;
-   exit;
+	// Insert the post into the database
+	wp_insert_post( $order_post );
 }
 
-echo 'Message has been sent';
-}
-else {
-	echo 'Error bad request';
-}
+get_footer();
 ?>
