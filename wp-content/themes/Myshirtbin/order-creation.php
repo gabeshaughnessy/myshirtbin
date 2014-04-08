@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Order Fulfillment 
+ * Template Name: Order Creation
  *
  * @package WordPress
  * @subpackage msb
@@ -287,7 +287,7 @@ if(isset($webhookContent['order_number'])){
 	$order_post = array(
 	  'post_title'    => 'Order Number '.$order_number,
 	  'post_content'  => $message,
-	  'post_status'   => 'publish',
+	  'post_status'   => 'private',
 	  'post_author'   => 1,
 	  'post_category' => array(2)
 	);
