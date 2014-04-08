@@ -193,7 +193,7 @@ $server_location = 'http://msb.gabesimagination.com/';
 $to  = 'fulfill@myshirtbin.com'; // note the comma
 // subject
 $subject = 'MyShirtBin Fulfillment Notification for Order '.$order_number;
-$barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="100%" />';
+$barcode = '<img src="'.$server_location.'includes/barcode.php?text='.$order_number.'" alt="Order Number Barcode '.$order_number.'"  width="50%" style="float: right;" />';
 
 // message
 $message = '';
@@ -209,7 +209,7 @@ $message .= '
 $message .= '
 	<td>
 		<img src="'.$server_location.'includes/logo.svg" alt="MyShirtBin.com"  width="100%" style="max-width:300px; max-height:52px;" />
-		<p>Invoice/Order #'.$order_number.' <strong>|</strong> Date: '.$created_at.'</p>
+		Invoice/Order #'.$order_number.' <strong>|</strong> Date: '.$created_at.'
 	</td> ';
 
 //barcode
