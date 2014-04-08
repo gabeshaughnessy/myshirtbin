@@ -8,16 +8,20 @@
  */
 
 get_header();
-$today = date('d.m.Y');
-$yesterday = date('d.m.Y',strtotime("-1 days"));
-error_log($today);
-error_log($yesterday);
+if(!empty($_GET) && isset($_GET["end"]) && isset($_GET["start"])){
+	$today = htmlspecialchars($_GET["end"]);
+	$yesterday = htmlspecialchars($_GET["start"]);
+}
+else{
+	$today = date('d.m.Y');
+	$yesterday = date('d.m.Y',strtotime("-1 days"));
+}
 $args = array(
 'cat' => '2',
 'date_query' => array(
 		array(
-			'after'     => $yesterday,
 			'before'    => $today,
+			'after'     => $yesterday,
 			'inclusive' => true,
 		),
 	),
