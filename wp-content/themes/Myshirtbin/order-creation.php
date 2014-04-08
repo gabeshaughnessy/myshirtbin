@@ -214,7 +214,7 @@ $message .= '
 //logo and details
 $message .= '
 	<td>
-		<img src="'.$server_location.'includes/logo.png" alt="MyShirtBin.com"  width="100%" style="max-width:300px; max-height:52px;" />
+		<img src="'.$server_location.'includes/logo.svg" alt="MyShirtBin.com"  width="100%" style="max-width:300px; max-height:52px;" />
 		<p>Invoice/Order #'.$order_number.' <strong>|</strong> Date: '.$created_at.'</p>
 	</td> ';
 
