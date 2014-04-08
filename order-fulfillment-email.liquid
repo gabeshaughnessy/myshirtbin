@@ -1,0 +1,51 @@
+<table width="100%">
+<tbody>
+  <tr>
+<td>
+    <img src="{{ 'logo.png' | asset_url }}" alt="MyShirtBin.com"  width="100%" style="max-width:300px; max-height:52px;" />
+    <p>Invoice/Order #{{ order_number }} <strong>|</strong> Date: {{ created_at | date}}</p>
+  </td> 
+ <td>
+    <img src="http://gabesimagination.com/myshirtbin-app/includes/barcode.php?text={{ order_number }}" alt="Order Number Barcode {{ order_number }}"  width="100%" />
+  </td>
+</tr>
+  <tr>
+    <td width="50%">
+      <p><strong>SOLD TO:</strong><br />
+      {{ billing_address.name}}<br />
+      {{ billing_address.company}}<br />
+      {{billing_address.street}}<br />
+       {{billing_address.city}}, {{billing_address.province}},{{billing_address.province_code}}, {{billing_address.country}}<br />
+      {{billing_address.phone}}
+    </p>
+    </td><td width="50%">
+      <p><strong>SHIP TO:</strong><br />
+        {{ shipping_address.name }}<br />
+        {{ shipping_address.street }}<br />
+        {{ shipping_address.city }},{{ shipping_address.province_code }}, {{ shipping_address.zip }} {{ shipping_address.country }}<br />
+       {{ shipping_address.phone }}
+      </p>
+    </td>
+  </tr></tbody></table> <table width="100%" style ="border: 1px solid #ccc;"><thead style="background-color: #aaa;">
+  <tr><th >Description</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead><tbody>
+{% for item in items_to_fulfill %}
+  
+   <tr >
+      <td width="60%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; text-align:left;">{{ item.title }}</td>
+      <td width="10%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; text-align:right;">{{ item.quantity }}</td>
+      <td width="10%" style ="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; text-align:right;">{{ item.price | money_with_currency }}</td>
+      <td width="10%" style ="border-bottom: 1px solid #ccc; text-align:right;">{{ item.line_price | money_with_currency }}</td>
+    </tr>
+
+{% endfor %}
+  </tbody></table><table width="100%"><tbody>
+  <tr><td width="70%">{{ note }}</td>
+<td width="30%">
+  <p>
+    <span style="text-align: left; width:50%; display:block; float: left;">Subtotal</span><span style="text-align: right; width:50%; display: block; float: right;">{{ subtotal_price  | money_with_currency }}</span>
+    <span style="text-align: left; width:50%; display: block; float: left;">Taxes</span><span style="text-align: right; width:50%; display: block; float: right;">{{ tax_price | money_with_currency }}</span>
+    <span style="text-align: left; width:50%; display:block; float: left;">Shipping</span><span style="text-align: right; width:50%; display: block; float: right;">{{ shipping_price | money_with_currency }}</span>
+    <span style="text-align: left; width:50%; display: block; float: left;"><strong>Total</strong></span><span style="text-align: right; width:50%; display: block; float: right;">{{ total_price | money_with_currency }}</span>
+  </p>
+</td></tr></tbody></table>
+<p style="text-align:center; width:100%;"><strong>Thanks for shopping at <a style="text-decoration: none;" href="http://myshirtbin.com" title="Visit My Shirt Bin" target="_blank" >MyShirtBin.com</a></strong></p>

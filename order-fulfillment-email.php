@@ -285,7 +285,7 @@ $headers .= 'From: orders@myshirtbin.com' . "\r\n";
 
 //PHP MAILER https://github.com/Synchro/PHPMailer
 if(isset($webhookContent['order_number']) || htmlspecialchars($_GET["test"] == 1)){
-	error_log(print_r($webhookContent, true));
+	error_log(print_r($webhookContent, true);
 $mail = new PHPMailer;
 
 //$mail->isSMTP();                                      // Set mailer to use SMTP
