@@ -2,6 +2,12 @@
 
 remove_filter('the_content', 'wpautop');
 
+
+//Allow subscribers to view private posts:
+$subRole = get_role( 'subscriber' );
+$subRole->add_cap( 'read_private_pages' );
+$subRole->add_cap( 'read_private_posts' );
+
 /* Replace WordPress Logo on login screen */
 function msb_login_logo() {
 ?> <style type="text/css">
