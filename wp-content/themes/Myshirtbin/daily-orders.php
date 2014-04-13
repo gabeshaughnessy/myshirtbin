@@ -9,19 +9,25 @@
 
 get_header();
 if(!empty($_GET) && isset($_GET["end"]) && isset($_GET["start"])){
-	$today = htmlspecialchars($_GET["end"]);
-	$yesterday = htmlspecialchars($_GET["start"]);
+	$end = htmlspecialchars($_GET["end"]);
+	$start = htmlspecialchars($_GET["start"]);
+}
+elseif(!empty($_GET)&& isset($_GET["days"])){
+    $days = htmlspecialchars($_GET["days"]);
+    $end = date('d.m.Y');
+	$start = date('d.m.Y',strtotime("- ".$days." days"));
 }
 else{
-	$today = date('d.m.Y');
-	$yesterday = date('d.m.Y',strtotime("-1 days"));
+	$days = 1;
+	$end = date('d.m.Y');
+	$start = date('d.m.Y',strtotime("- ".$days." days"));
 }
 $args = array(
 'cat' => '2',
 'date_query' => array(
 		array(
-			'before'    => $today,
-			'after'     => $yesterday,
+			'before'    => $end,
+			'after'     => $start,
 			'inclusive' => true,
 		),
 	),
